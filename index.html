@@ -3,107 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE M.O.E. ARCHIVE</title>
+    <title>M.O.E. Vercel Hub | Ascension Logic</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-[#050505]">
-    <div id="root"></div>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
 
-    <script type="text/babel">
-        const { useState } = React;
-        const { Search } = lucide;
+  const libraryDatabase = [
+    // --- DOMAIN S: STRATEGY (SYS-B) ---
+    { id: 'SYS-B001', type: 'MASTER', title: 'Blue Ocean Strategy', description: 'Kim & Mauborgne // Strategy' },
+    { id: 'SYS-B002', type: 'MASTER', title: 'The Startup Way', description: 'Eric Ries // Innovation Scale' },
+    { id: 'SYS-B003', type: 'MASTER', title: 'Build', description: 'Tony Fadell // Productization' },
+    { id: 'SYS-B004', type: 'MASTER', title: 'The First 90 Days', description: 'Michael Watkins // Transition' },
+    { id: 'SYS-B005', type: 'MASTER', title: 'Chaos Monkeys', description: 'Garcia Martinez // Ads & Metrics' },
+    { id: 'SYS-B006', type: 'MASTER', title: 'Write Your Business Plan', description: 'Entrepreneur Media // Core' },
+    { id: 'SYS-B007', type: 'MASTER', title: 'The Personal MBA', description: 'Josh Kaufman // Business OS' },
+    { id: 'SYS-B008', type: 'MASTER', title: 'Insane Mode', description: 'Hamish McKenzie // Disruption' },
+    { id: 'SYS-B009', type: 'MASTER', title: 'Solved', description: 'Andrew Wear // Problem Solving' },
+    { id: 'SYS-B010', type: 'MASTER', title: 'Designing Here/Now', description: 'Core77 // Architecture' },
+    { id: 'SYS-B011', type: 'MASTER', title: 'The Genuine Market', description: 'Zhu Haijiu // Action & Rule' },
+    { id: 'SYS-B012', type: 'MASTER', title: 'Contagious', description: 'Jonah Berger // Viral Mechanics' },
+    { id: 'SYS-B013', type: 'MASTER', title: 'Alien Thinking', description: 'Bouquet, Barsoux, Wade // Strategy' },
 
-        const MOELibraryV5 = () => {
-            const libraryDatabase = [
-                { id: 'SYS-B001', type: 'MASTER', title: 'Blue Ocean Strategy', description: 'Kim & Mauborgne // Strategy' },
-                { id: 'SYS-B002', type: 'MASTER', title: 'The Startup Way', description: 'Eric Ries // Innovation Scale' },
-                { id: 'SYS-B003', type: 'MASTER', title: 'Build', description: 'Tony Fadell // Productization' },
-                { id: 'SYS-B004', type: 'MASTER', title: 'The First 90 Days', description: 'Michael Watkins // Transition' },
-                { id: 'SYS-B005', type: 'MASTER', title: 'Chaos Monkeys', description: 'Garcia Martinez // Ads & Metrics' },
-                { id: 'SYS-B006', type: 'MASTER', title: 'Write Your Business Plan', description: 'Entrepreneur Media // Core' },
-                { id: 'SYS-B007', type: 'MASTER', title: 'The Personal MBA', description: 'Josh Kaufman // Business OS' },
-                { id: 'SYS-B008', type: 'MASTER', title: 'Insane Mode', description: 'Hamish McKenzie // Disruption' },
-                { id: 'SYS-B009', type: 'MASTER', title: 'Solved', description: 'Andrew Wear // Problem Solving' },
-                { id: 'SYS-B010', type: 'MASTER', title: 'Designing Here/Now', description: 'Core77 // Architecture' },
-                { id: 'SYS-B011', type: 'MASTER', title: 'The Genuine Market', description: 'Zhu Haijiu // Action & Rule' },
-                { id: 'SYS-P001', type: 'MASTER', title: 'Thinking, Fast and Slow', description: 'Daniel Kahneman // Systems 1 & 2' },
-                { id: 'SYS-P002', type: 'MASTER', title: 'The Almanack of Naval', description: 'Eric Jorgenson // Leverage' },
-                { id: 'KIN-B001', type: 'MASTER', title: 'Becoming Supernatural', description: 'Dr. Joe Dispenza // Hardware' },
-                { id: 'KIN-B002', type: 'MASTER', title: 'The Power of Now', description: 'Eckhart Tolle // Presence' },
-                { id: 'MET-001', type: 'MASTER', title: 'Healthbar SOP v1.0', description: 'Floor Logic & Inventory' },
-                { id: 'MET-002', type: 'CLIENT', title: 'The 3L Fluid Command', description: 'Client Intake & Hydration Protocol' }
-            ];
+    // --- DOMAIN P: PSYCHOLOGY (SYS-P) ---
+    { id: 'SYS-P001', type: 'MASTER', title: 'Thinking, Fast and Slow', description: 'Daniel Kahneman // Systems 1 & 2' },
+    { id: 'SYS-P002', type: 'MASTER', title: 'The Almanack of Naval', description: 'Eric Jorgenson // Leverage' },
+    { id: 'SYS-P003', type: 'MASTER', title: 'Secrets of the Millionaire Mind', description: 'T. Harv Eker // Wealth' },
+    { id: 'SYS-P004', type: 'MASTER', title: 'The 48 Laws of Power', description: 'Robert Greene // Politics' },
+    { id: 'SYS-P005', type: 'MASTER', title: 'Think Again', description: 'Adam Grant // Unlearning' },
 
-            const [activeFilter, setActiveFilter] = useState('ALL');
-            const [searchQuery, setSearchQuery] = useState('');
+    // --- DOMAIN T: TECHNOLOGY & FUTURE (SYS-T) ---
+    { id: 'SYS-T001', type: 'MASTER', title: 'Simply AI', description: 'DK // Future Systems' },
+    { id: 'SYS-T005', type: 'MASTER', title: 'The Singularity is Near', description: 'Ray Kurzweil // Future Scenarios' },
 
-            const filters = [
-                { label: 'ALL ASSETS', prefix: 'ALL' },
-                { label: 'SYS- (ENTERPRISE)', prefix: 'SYS' },
-                { label: 'KIN- (HARDWARE)', prefix: 'KIN' },
-                { label: 'MET- (FUEL)', prefix: 'MET' }
-            ];
+    // --- DOMAIN KIN: HARDWARE (KIN-B) ---
+    { id: 'KIN-B001', type: 'MASTER', title: 'Becoming Supernatural', description: 'Dr. Joe Dispenza // Hardware' },
+    { id: 'KIN-B002', type: 'MASTER', title: 'The Power of Now', description: 'Eckhart Tolle // Presence' },
+    { id: 'KIN-B014', type: 'MASTER', title: 'Before We Forget Kindness', description: 'Toshikazu Kawaguchi // Decompression' },
+    { id: 'KIN-B015', type: 'MASTER', title: 'Quantum Mechanics: Theoretical Minimum', description: 'Susskind & Friedman // Physics' },
+    { id: 'KIN-B007', type: 'MASTER', title: 'The Human Brain', description: 'Susan Greenfield // Cognitive RAM' },
+    { id: 'KIN-B013', type: 'OFFLINE', title: 'White Nights', description: 'Fyodor Dostoyevsky // Decompression' }
+  ];
 
-            const filteredAssets = libraryDatabase.filter(asset => {
-                const matchesFilter = activeFilter === 'ALL' || asset.id.startsWith(activeFilter);
-                const matchesSearch = asset.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                      asset.description.toLowerCase().includes(searchQuery.toLowerCase());
-                return matchesFilter && matchesSearch;
-            });
+  const filters = [
+    { label: 'ALL ASSETS', prefix: 'ALL' },
+    { label: 'SYS-', prefix: 'SYS' },
+    { label: 'KIN-', prefix: 'KIN' },
+    { label: 'MET-', prefix: 'MET' }
+  ];
 
-            return (
-                <div className="min-h-screen bg-[#050505] text-gray-200 p-8 font-sans">
-                    <div className="max-w-[1400px] mx-auto">
-                        <header className="border-b border-[#222] pb-8 mb-8">
-                            <p className="text-[#4CAF50] font-mono text-xs font-bold uppercase tracking-[0.2em] mb-4">Access Level: Architect (S-Rank)</p>
-                            <h1 className="font-serif text-5xl text-white tracking-tight">THE M.O.E. ARCHIVE</h1>
-                        </header>
+  const filteredAssets = libraryDatabase
+    .filter(asset => activeFilter === 'ALL' || asset.id.startsWith(activeFilter))
+    .filter(asset => 
+      asset.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      asset.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
-                        <div className="bg-[#0a0a0a] border border-[#222] p-4 flex flex-col md:flex-row gap-4 mb-10">
-                            <div className="relative w-full">
-                                <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
-                                <input
-                                    type="text"
-                                    placeholder="SEARCH BY TITLE OR AUTHOR..."
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full bg-[#111] border border-[#333] pl-10 py-2 text-xs text-gray-300 font-mono tracking-widest uppercase focus:border-[#4CAF50] outline-none"
-                                />
-                            </div>
-                        </div>
+  return (
+    <div className="min-h-screen bg-[#050505] text-gray-200 p-8 font-sans">
+      <div className="max-w-[1400px] mx-auto">
+        <header className="border-b border-[#222] pb-8 mb-8">
+          <h1 className="font-serif text-5xl text-white mb-6">M.O.E. ARCHIVE</h1>
+          
+          {/* Search Field */}
+          <div className="relative w-full max-w-lg mb-6">
+            <Search className="absolute left-3 top-3 text-gray-600 w-5 h-5" />
+            <input 
+              type="text" 
+              placeholder="SEARCH BY NAME OR AUTHOR..."
+              className="w-full bg-[#111] border border-[#333] text-sm py-3 pl-10 pr-4 text-white font-mono placeholder-gray-600 focus:border-[#4CAF50] outline-none transition-all"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
 
-                        <div className="flex flex-wrap gap-4 mb-10 border-b border-[#111] pb-6">
-                            {filters.map((f) => (
-                                <button key={f.prefix} onClick={() => setActiveFilter(f.prefix)} className={`px-5 py-2 font-mono text-xs uppercase tracking-widest border transition-all ${activeFilter === f.prefix ? 'border-[#4CAF50] text-[#4CAF50] bg-[#4CAF50]/10' : 'border-[#333] text-gray-500 hover:border-gray-400'}`}>
-                                    {f.label}
-                                </button>
-                            ))}
-                        </div>
+          {/* Filter Controls */}
+          <div className="flex flex-wrap gap-2">
+            {filters.map((filter) => (
+              <button
+                key={filter.prefix}
+                onClick={() => setActiveFilter(filter.prefix)}
+                className={`px-4 py-1.5 font-mono text-[10px] uppercase tracking-widest border transition-all ${
+                  activeFilter === filter.prefix 
+                    ? 'border-[#4CAF50] text-[#4CAF50] bg-[#4CAF50]/10' 
+                    : 'border-[#333] text-gray-500 hover:border-gray-400'
+                }`}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+        </header>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {filteredAssets.map(asset => (
-                                <div key={asset.id} className="bg-[#111] border border-[#222] p-5 hover:border-[#4CAF50] transition-all duration-300 flex flex-col h-full">
-                                    <div className="flex justify-between items-center mb-6">
-                                        <span className={`font-mono text-xs font-semibold tracking-wider ${asset.type === 'MASTER' ? 'text-[#4CAF50]' : 'text-blue-400'}`}>
-                                            {asset.id} ({asset.type})
-                                        </span>
-                                    </div>
-                                    <h3 className="text-white text-xl mb-2 tracking-wide leading-tight">{asset.title}</h3>
-                                    <p className="text-gray-400 text-sm tracking-wide mt-auto">{asset.description}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            );
-        };
+        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredAssets.map(asset => (
+            <div key={asset.id} className="bg-[#111] border border-[#222] p-5 group flex flex-col hover:border-[#4CAF50] transition-all">
+              <span className="text-[#4CAF50] font-mono text-[10px] mb-4">{asset.id}</span>
+              <h3 className="font-serif text-lg text-white mb-1">{asset.title}</h3>
+              <p className="font-sans text-gray-500 text-xs mt-auto">{asset.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<MOELibraryV5 />);
-    </script>
-</body>
-</html>
+export default MOELibraryV4_1;
