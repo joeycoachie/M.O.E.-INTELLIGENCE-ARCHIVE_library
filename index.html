@@ -1,112 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M.O.E. Vercel Hub | Ascension Logic</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M.O.E. | Intelligence Archive v3.0</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,900;1,900&display=swap');
 
-  const libraryDatabase = [
-    // --- DOMAIN S: STRATEGY (SYS-B) ---
-    { id: 'SYS-B001', type: 'MASTER', title: 'Blue Ocean Strategy', description: 'Kim & Mauborgne // Strategy' },
-    { id: 'SYS-B002', type: 'MASTER', title: 'The Startup Way', description: 'Eric Ries // Innovation Scale' },
-    { id: 'SYS-B003', type: 'MASTER', title: 'Build', description: 'Tony Fadell // Productization' },
-    { id: 'SYS-B004', type: 'MASTER', title: 'The First 90 Days', description: 'Michael Watkins // Transition' },
-    { id: 'SYS-B005', type: 'MASTER', title: 'Chaos Monkeys', description: 'Garcia Martinez // Ads & Metrics' },
-    { id: 'SYS-B006', type: 'MASTER', title: 'Write Your Business Plan', description: 'Entrepreneur Media // Core' },
-    { id: 'SYS-B007', type: 'MASTER', title: 'The Personal MBA', description: 'Josh Kaufman // Business OS' },
-    { id: 'SYS-B008', type: 'MASTER', title: 'Insane Mode', description: 'Hamish McKenzie // Disruption' },
-    { id: 'SYS-B009', type: 'MASTER', title: 'Solved', description: 'Andrew Wear // Problem Solving' },
-    { id: 'SYS-B010', type: 'MASTER', title: 'Designing Here/Now', description: 'Core77 // Architecture' },
-    { id: 'SYS-B011', type: 'MASTER', title: 'The Genuine Market', description: 'Zhu Haijiu // Action & Rule' },
-    { id: 'SYS-B012', type: 'MASTER', title: 'Contagious', description: 'Jonah Berger // Viral Mechanics' },
+body { 
+font-family: 'Inter', sans-serif; 
+background-color: #050505; 
+color: #e5e5e5;
+-webkit-font-smoothing: antialiased;
+}
+
+.serif-header { font-family: 'Playfair Display', serif; }
+
+.card {
+background-color: #0a0a0a;
+border: 1px solid #1a1a1a;
+transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+border-color: #4CAF50;
+transform: translateY(-2px);
+background-color: #0f0f0f;
+}
+
+.filter-btn.active {
+border-color: #4CAF50;
+color: #4CAF50;
+background-color: rgba(76, 175, 80, 0.1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #4CAF50; }
+</style>
+</head>
+<body class="min-h-screen p-6 md:p-12 lg:p-20">
+
+<div class="max-w-[1400px] mx-auto">
+<!-- HEADER -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-white/10 pb-10 mb-10">
+<div>
+<p class="text-[#4CAF50] font-mono text-[10px] tracking-[0.3em] uppercase mb-4">Access Level: Architect (S-Rank)</p>
+<h1 class="serif-header text-5xl md:text-7xl text-white tracking-tighter leading-none">
+M.O.E. INTELLIGENCE <br> ARCHIVE
+</h1>
+</div>
+<div class="text-left md:text-right mt-8 md:mt-0 font-mono text-[10px] text-gray-500 tracking-[0.2em] leading-relaxed uppercase">
+<p>Database V3.0 // LIVE LEDGER</p>
+<p>Internal Operating System</p>
+</div>
+</header>
+
+<!-- FILTERS -->
+<nav class="flex flex-wrap gap-3 mb-12 border-b border-white/5 pb-8" id="filter-nav">
+<button onclick="filterAssets('ALL')" class="filter-btn active px-5 py-2 border border-[#222] text-[10px] font-mono uppercase tracking-widest transition-all">ALL ASSETS</button>
+<button onclick="filterAssets('SYS')" class="filter-btn px-5 py-2 border border-[#222] text-[10px] font-mono uppercase tracking-widest transition-all">SYS- (ENTERPRISE)</button>
+<button onclick="filterAssets('KIN')" class="filter-btn px-5 py-2 border border-[#222] text-[10px] font-mono uppercase tracking-widest transition-all">KIN- (HARDWARE)</button>
+<button onclick="filterAssets('MET')" class="filter-btn px-5 py-2 border border-[#222] text-[10px] font-mono uppercase tracking-widest transition-all">MET- (FUEL)</button>
+</nav>
+
+<!-- GRID -->
+<div id="archive-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Cards injected here -->
+</div>
+
+<!-- FOOTER -->
+<footer class="mt-32 pt-10 border-t border-white/10 flex flex-col items-center gap-6">
+<div class="flex justify-between w-full text-[9px] font-mono text-gray-600 uppercase tracking-[0.4em]">
+<span id="asset-count">0 ASSETS RENDERED</span>
+<span>SYSTEM.ONLINE</span>
+</div>
+<p class="text-[10px] font-bold text-gray-500 tracking-[0.15em] uppercase text-center max-w-xl leading-relaxed">
+Rational for Product Omission Mandate Active // Non-negotiable Asset Protocol
+</p>
+</footer>
+</div>
+
+<script>
+const libraryDatabase = [
+// --- DOMAIN S: STRATEGY & ARCHITECTURE (SYS-) ---
+{ id: 'SYS-B001', type: 'MASTER', title: 'Blue Ocean Strategy', description: 'Kim & Mauborgne // Strategy' },
+{ id: 'SYS-B002', type: 'MASTER', title: 'The Startup Way', description: 'Eric Ries // Innovation Scale' },
+{ id: 'SYS-B003', type: 'MASTER', title: 'Build', description: 'Tony Fadell // Productization' },
+{ id: 'SYS-B004', type: 'MASTER', title: 'The First 90 Days', description: 'Michael Watkins // Transition' },
+{ id: 'SYS-B005', type: 'MASTER', title: 'Chaos Monkeys', description: 'Garcia Martinez // Ads & Metrics' },
+{ id: 'SYS-B006', type: 'MASTER', title: 'Write Your Business Plan', description: 'Entrepreneur Media // Core' },
+{ id: 'SYS-B007', type: 'MASTER', title: 'The Personal MBA', description: 'Josh Kaufman // Business OS' },
+{ id: 'SYS-B008', type: 'MASTER', title: 'Insane Mode', description: 'Hamish McKenzie // Disruption' },
+{ id: 'SYS-B009', type: 'MASTER', title: 'Solved', description: 'Andrew Wear // Problem Solving' },
+{ id: 'SYS-B010', type: 'MASTER', title: 'Designing Here/Now', description: 'Core77 // Architecture' },
+{ id: 'SYS-B011', type: 'MASTER', title: 'The Genuine Market', description: 'Zhu Haijiu // Action & Rule' },
+{ id: 'SYS-B012', type: 'MASTER', title: 'Contagious', description: 'Jonah Berger // Viral Mechanics' },
     { id: 'SYS-B013', type: 'MASTER', title: 'Alien Thinking', description: 'Bouquet, Barsoux, Wade // Strategy' },
 
-    // --- DOMAIN P: PSYCHOLOGY (SYS-P) ---
-    { id: 'SYS-P001', type: 'MASTER', title: 'Thinking, Fast and Slow', description: 'Daniel Kahneman // Systems 1 & 2' },
+// --- DOMAIN P: PSYCHOLOGY & NEGOTIATION ---
+{ id: 'SYS-P001', type: 'MASTER', title: 'Thinking, Fast and Slow', description: 'Daniel Kahneman // Systems 1 & 2' },
     { id: 'SYS-P002', type: 'MASTER', title: 'The Almanack of Naval', description: 'Eric Jorgenson // Leverage' },
     { id: 'SYS-P003', type: 'MASTER', title: 'Secrets of the Millionaire Mind', description: 'T. Harv Eker // Wealth' },
     { id: 'SYS-P004', type: 'MASTER', title: 'The 48 Laws of Power', description: 'Robert Greene // Politics' },
     { id: 'SYS-P005', type: 'MASTER', title: 'Think Again', description: 'Adam Grant // Unlearning' },
+    
+             // --- DOMAIN E: ECONOMICS, GAME THEORY & SYSTEMS (SYS-E) ---
+            { id: 'SYS-E001', type: 'MASTER', title: '50 Economics Classics', description: 'Tom Butler-Bowdon // Macro' },
+            { id: 'SYS-E002', type: 'MASTER', title: 'The Great Economists', description: 'Linda Yueh // Macro' },
+            { id: 'SYS-E003', type: 'MASTER', title: 'Fifty Things That Made the Modern Economy', description: 'Tim Harford // Systems' },
+            { id: 'SYS-E004', type: 'MASTER', title: 'Game Theory', description: 'Ken Binmore // Strategy' },
+            { id: 'SYS-E005', type: 'MASTER', title: 'Negotiating 101', description: 'Peter Sander // Tactics' },
+            { id: 'SYS-E006', type: 'MASTER', title: 'Million Dollar Math', description: 'Hugh Barker // EV & Risk' },
+            { id: 'SYS-E007', type: 'MASTER', title: 'The Black Swan', description: 'Nassim Taleb // Risk Asymmetry' },
 
-    // --- DOMAIN T: TECHNOLOGY & FUTURE (SYS-T) ---
-    { id: 'SYS-T001', type: 'MASTER', title: 'Simply AI', description: 'DK // Future Systems' },
-    { id: 'SYS-T005', type: 'MASTER', title: 'The Singularity is Near', description: 'Ray Kurzweil // Future Scenarios' },
+             // --- DOMAIN T: TECHNOLOGY & FUTURE SCENARIOS (SYS-T) ---
+            { id: 'SYS-T001', type: 'MASTER', title: 'Simply AI', description: 'DK // Future Systems' },
+            { id: 'SYS-T002', type: 'MASTER', title: 'The Art of Invisibility', description: 'Kevin Mitnick // Security' },
+            { id: 'SYS-T003', type: 'MASTER', title: 'The Messenger', description: 'Peter Loftus // Bio-Biz' },
+            { id: 'SYS-T004', type: 'MASTER', title: 'Earth: The Sequel', description: 'Fred Krupp // Future' },
 
-    // --- DOMAIN KIN: HARDWARE (KIN-B) ---
-    { id: 'KIN-B001', type: 'MASTER', title: 'Becoming Supernatural', description: 'Dr. Joe Dispenza // Hardware' },
-    { id: 'KIN-B002', type: 'MASTER', title: 'The Power of Now', description: 'Eckhart Tolle // Presence' },
-    { id: 'KIN-B014', type: 'MASTER', title: 'Before We Forget Kindness', description: 'Toshikazu Kawaguchi // Decompression' },
-    { id: 'KIN-B015', type: 'MASTER', title: 'Quantum Mechanics: Theoretical Minimum', description: 'Susskind & Friedman // Physics' },
-    { id: 'KIN-B007', type: 'MASTER', title: 'The Human Brain', description: 'Susan Greenfield // Cognitive RAM' },
-    { id: 'KIN-B013', type: 'OFFLINE', title: 'White Nights', description: 'Fyodor Dostoyevsky // Decompression' }
-  ];
+            // --- DOMAIN C: CULTURE, HISTORY & HUMANITY (SYS-C) ---
+            { id: 'SYS-C001', type: 'MASTER', title: '#NewPower', description: 'Heimans & Timms // Community' },
+            { id: 'SYS-C002', type: 'MASTER', title: 'Lu Xun\'s Essays', description: 'Lu Xun // Culture' },
+            { id: 'SYS-C003', type: 'MASTER', title: 'The True Story of Ah Q', description: 'Lu Xun // Ego Death' },
+            { id: 'SYS-C004', type: 'MASTER', title: 'Straight to Hell', description: 'John LeFevre // Finance Culture' },
+            { id: 'SYS-C005', type: 'MASTER', title: 'The Governance of China IV', description: 'Xi Jinping // Sovereignty' },
+                    
+// --- DOMAIN KIN: HARDWARE / BIOMECHANICS ---
+{ id: 'KIN-B001', type: 'MASTER', title: 'Becoming Supernatural', description: 'Dr. Joe Dispenza // Hardware' },
+{ id: 'KIN-B002', type: 'MASTER', title: 'The Power of Now', description: 'Eckhart Tolle // Presence' },
+@@ -127,8 +150,9 @@
 
-  const filters = [
-    { label: 'ALL ASSETS', prefix: 'ALL' },
-    { label: 'SYS-', prefix: 'SYS' },
-    { label: 'KIN-', prefix: 'KIN' },
-    { label: 'MET-', prefix: 'MET' }
-  ];
+// --- DOMAIN MET: FUEL / METABOLICS ---
+{ id: 'MET-001', type: 'MASTER', title: 'Healthbar SOP v1.0', description: 'Floor Logic & Inventory' },
+            { id: 'MET-002', type: 'CLIENT', title: 'The 3L Fluid Command', description: 'Client Intake & Hydration Protocol' }
+        ];
+            { id: 'MET-002', type: 'CLIENT', title: 'The 3L Fluid Command', description: 'Client Intake & Hydration Protocol' },
+            { id: 'MET-003', type: 'OFFLINE', title: 'Clinical Thermodynamics', description: 'Pending Upload' }
+  ];     ];
 
-  const filteredAssets = libraryDatabase
-    .filter(asset => activeFilter === 'ALL' || asset.id.startsWith(activeFilter))
-    .filter(asset => 
-      asset.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      asset.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-  return (
-    <div className="min-h-screen bg-[#050505] text-gray-200 p-8 font-sans">
-      <div className="max-w-[1400px] mx-auto">
-        <header className="border-b border-[#222] pb-8 mb-8">
-          <h1 className="font-serif text-5xl text-white mb-6">M.O.E. ARCHIVE</h1>
-          
-          {/* Search Field */}
-          <div className="relative w-full max-w-lg mb-6">
-            <Search className="absolute left-3 top-3 text-gray-600 w-5 h-5" />
-            <input 
-              type="text" 
-              placeholder="SEARCH BY NAME OR AUTHOR..."
-              className="w-full bg-[#111] border border-[#333] text-sm py-3 pl-10 pr-4 text-white font-mono placeholder-gray-600 focus:border-[#4CAF50] outline-none transition-all"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-
-          {/* Filter Controls */}
-          <div className="flex flex-wrap gap-2">
-            {filters.map((filter) => (
-              <button
-                key={filter.prefix}
-                onClick={() => setActiveFilter(filter.prefix)}
-                className={`px-4 py-1.5 font-mono text-[10px] uppercase tracking-widest border transition-all ${
-                  activeFilter === filter.prefix 
-                    ? 'border-[#4CAF50] text-[#4CAF50] bg-[#4CAF50]/10' 
-                    : 'border-[#333] text-gray-500 hover:border-gray-400'
-                }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
-        </header>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredAssets.map(asset => (
-            <div key={asset.id} className="bg-[#111] border border-[#222] p-5 group flex flex-col hover:border-[#4CAF50] transition-all">
-              <span className="text-[#4CAF50] font-mono text-[10px] mb-4">{asset.id}</span>
-              <h3 className="font-serif text-lg text-white mb-1">{asset.title}</h3>
-              <p className="font-sans text-gray-500 text-xs mt-auto">{asset.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default MOELibraryV4_1;
+let currentFilter = 'ALL';
