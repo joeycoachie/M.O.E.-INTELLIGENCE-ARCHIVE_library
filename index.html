@@ -47,7 +47,6 @@
 
 <script>
 const libraryDatabase = [
-    { id: 'SYS-T005', type: 'MASTER', title: 'The Singularity is Near', author: 'Ray Kurzweil', description: 'Technology & Future' },
     { id: 'SYS-B001', type: 'MASTER', title: 'Blue Ocean Strategy', author: 'Kim & Mauborgne', description: 'Strategy' },
     { id: 'SYS-B002', type: 'MASTER', title: 'The Startup Way', author: 'Eric Ries', description: 'Innovation Scale' },
     { id: 'SYS-B003', type: 'MASTER', title: 'Build', author: 'Tony Fadell', description: 'Productization' },
@@ -60,7 +59,6 @@ const libraryDatabase = [
     { id: 'SYS-B010', type: 'MASTER', title: 'Designing Here/Now', author: 'Core77', description: 'Architecture' },
     { id: 'SYS-B011', type: 'MASTER', title: 'The Genuine Market', author: 'Zhu Haijiu', description: 'Action & Rule' },
     { id: 'SYS-B012', type: 'MASTER', title: 'Contagious', author: 'Jonah Berger', description: 'Viral Mechanics' },
-    { id: 'SYS-T005', type: 'MASTER', title: 'The Singularity is Near', author: 'Ray Kurzweil', description: 'Future Scenarios' },
     { id: 'SYS-B013', type: 'MASTER', title: 'Alien Thinking', author: 'Bouquet, Barsoux, Wade', description: 'Innovation Strategy' },
     { id: 'SYS-P001', type: 'MASTER', title: 'Thinking, Fast and Slow', author: 'Daniel Kahneman', description: 'Systems 1 & 2' },
     { id: 'SYS-P002', type: 'MASTER', title: 'The Almanack of Naval', author: 'Eric Jorgenson', description: 'Leverage' },
@@ -69,12 +67,44 @@ const libraryDatabase = [
     { id: 'SYS-P005', type: 'MASTER', title: 'Think Again', author: 'Adam Grant', description: 'Unlearning' },
     { id: 'SYS-P008', type: 'MASTER', title: '101 Essays', author: 'Brianna Wiest', description: 'Reprogramming' },
     { id: 'SYS-P009', type: 'MASTER', title: 'Super Control Techniques', author: 'Cao Junli', description: 'Negotiation' },
-    { id: 'KIN-B001', type: 'MASTER', title: 'Becoming Supernatural', author: 'Joe Dispenza', description: 'Hardware' },
-    { id: 'KIN-B002', type: 'MASTER', title: 'The Power of Now', author: 'Eckhart Tolle', description: 'Presence' },
-    { id: 'KIN-B007', type: 'MASTER', title: 'The Human Brain', author: 'Susan Greenfield', description: 'Cognitive RAM' },
-    { id: 'KIN-B014', type: 'MASTER', title: 'Before We Forget Kindness', author: 'Toshikazu Kawaguchi', description: 'Decompression' },
-    { id: 'KIN-B015', type: 'MASTER', title: 'Quantum Mechanics', author: 'Susskind & Friedman', description: 'Fundamental Models' },
-    { id: 'MET-001', type: 'MASTER', title: 'Healthbar SOP v1.0', author: 'Internal', description: 'Floor Logic' }
+
+      // --- Economics ---
+    { id: 'SYS-E001', type: 'MASTER', title: '50 Economics Classics', author: 'Tom Butler-Bowdon', description: 'Macro' },
+    { id: 'SYS-E002', type: 'MASTER', title: 'The Great Economists', author: 'Linda Yueh', description: 'Macro' },
+    { id: 'SYS-E003', type: 'MASTER', title: 'Fifty Things That Made the Modern Economy', author: 'Tim Harford', description: 'Systems' },
+    { id: 'SYS-E004', type: 'MASTER', title: 'Game Theory', author: 'Ken Binmore', description: 'Strategy' },
+    { id: 'SYS-E005', type: 'MASTER', title: 'Negotiating 101', author: 'Peter Sander', description: 'Tactics' },
+    { id: 'SYS-E006', type: 'MASTER', title: 'Million Dollar Math', author: 'Hugh Barker', description: 'EV & Risk' },
+    { id: 'SYS-E007', type: 'MASTER', title: 'The Black Swan', author: 'Nassim Taleb', description: 'Risk Asymmetry' },
+
+    // --- Technology & Future (T) ---
+    { id: 'SYS-T001', type: 'MASTER', title: 'Simply AI', author: 'DK', description: 'Technology' },
+    { id: 'SYS-T002', type: 'MASTER', title: 'The Art of Invisibility', author: 'Kevin Mitnick', description: 'Security' },
+    { id: 'SYS-T003', type: 'MASTER', title: 'The Messenger', author: 'Peter Loftus', description: 'Bio-Biz' },
+    { id: 'SYS-T004', type: 'MASTER', title: 'Earth: The Sequel', author: 'Fred Krupp', description: 'Future Scenarios' },
+    { id: 'SYS-T005', type: 'MASTER', title: 'The Singularity is Near', author: 'Ray Kurzweil', description: 'Future Scenarios' },
+
+    // --- KIN- (HARDWARE / BIOMECHANICS / DECOMPRESSION) ---
+    { id: 'KIN-B001', title: 'Becoming Supernatural', author: 'Dr. Joe Dispenza', type: 'KIN' },
+    { id: 'KIN-B002', title: 'The Power of Now', author: 'Eckhart Tolle', type: 'KIN' },
+    { id: 'KIN-B003', title: 'Cubed', author: 'Erno Rubik', type: 'KIN' },
+    { id: 'KIN-B004', title: 'The Lincoln Highway', author: 'Amor Towles', type: 'KIN' },
+    { id: 'KIN-B005', title: 'When Breath Becomes Air', author: 'Paul Kalanithi', type: 'KIN' },
+    { id: 'KIN-B006', title: 'Philanthropy', author: 'Paul Vallely', type: 'KIN' },
+    { id: 'KIN-B007', title: 'The Human Brain', author: 'Susan Greenfield', type: 'KIN' },
+    { id: 'KIN-B008', title: 'The Skeptics\' Guide to the Universe', author: 'Steven Novella', type: 'KIN' },
+    { id: 'KIN-B009', title: 'The Particle at the End of the Universe', author: 'Sean Carroll', type: 'KIN' },
+    { id: 'KIN-B010', title: 'Woo\'s Wonderful World of Math', author: 'Eddie Woo', type: 'KIN' },
+    { id: 'KIN-B011', title: 'Amazing Memory', author: 'Dominic O\'Brien', type: 'KIN' },
+    { id: 'KIN-B012', title: 'Your Intuition Led You Here', author: 'Naranjo & Vargas', type: 'KIN' },
+    { id: 'KIN-B013', title: 'White Nights', author: 'Fyodor Dostoyevsky', type: 'KIN' },
+    { id: 'KIN-B014', title: 'Before We Forget Kindness', author: 'Toshikazu Kawaguchi', type: 'KIN' },
+    { id: 'KIN-B015', title: 'Quantum Mechanics: The Theoretical Minimum', author: 'Susskind & Friedman', type: 'KIN' },
+    
+   // --- MET- (FUEL / METABOLICS) ---
+    { id: 'MET-001', title: 'Healthbar SOP v1.0', author: 'Architect', type: 'MET' },
+    { id: 'MET-002', title: 'The 3L Fluid Command', author: 'Architect', type: 'MET' },
+    { id: 'MET-003', title: 'Clinical Thermodynamics', author: 'Pending', type: 'MET' },
     // Add new books here following the format above
 ];
 
